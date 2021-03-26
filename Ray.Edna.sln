@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ray.Web.Hosting", "src\Ray.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ray.Edna.TaskCore", "lib\Ray.Edna.TaskCore\Ray.Edna.TaskCore.csproj", "{12D716E4-BB21-4019-981E-DCEFB8E77DD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ray.Edna.Option", "Ray.Edna.Option\Ray.Edna.Option.csproj", "{6D77E2B1-08E9-448E-8561-9C6EBD9E4AE3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ray.Edna.Option", "lib\Ray.Edna.Option\Ray.Edna.Option.csproj", "{6D77E2B1-08E9-448E-8561-9C6EBD9E4AE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
