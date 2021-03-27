@@ -5,13 +5,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="FakesAssemblies\**" />
+    <EmbeddedResource Remove="FakesAssemblies\**" />
+    <None Remove="FakesAssemblies\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.QualityTools.Testing.Fakes" Version="16.7.4-beta.20330.2" />
     <PackageReference Include="Quartz" Version="3.2.4" />
     <PackageReference Include="XExten.Advance" Version="1.0.0" />
 	  <PackageReference Include="Serilog.AspNetCore" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Ray.Edna.Option\Ray.Edna.Option.csproj" />
+    <AdditionalDesignTimeBuildInput Remove="FakesAssemblies\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ray.Edna.Option\Ray.Edna.Option.csproj" />
   </ItemGroup>
 
 </Project>
