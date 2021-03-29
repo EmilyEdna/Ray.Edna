@@ -5,11 +5,10 @@ using Synctool.HttpFramework;
 using Synctool.LinqFramework;
 using System.Linq;
 
-namespace Ray.Edna.BiliBili.Account
+namespace Ray.Edna.BiliBili.All
 {
     public class UserAssest : IBiliBili
     {
-
         public UserInfo CookieLogin()
         {
             var Dic = AppOption.Cookies();
@@ -27,7 +26,5 @@ namespace Ray.Edna.BiliBili.Account
                 .ToJson()
                 .ToModel<UserInfo>();
         }
-
-
     }
 }

@@ -12,8 +12,4 @@
     <ProjectReference Include="..\..\lib\Ray.Edna.Option\Ray.Edna.Option.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Input\" />
-  </ItemGroup>
-
 </Project>

@@ -12,6 +12,8 @@ namespace Ray.Edna.Option
 
         public static string CookieStr { get; set; }
 
+        public static int MoneyGetTime { get; set; }
+
         public static Dictionary<string, string> Cookies()
         {
             Dictionary<string, string> dic = new();

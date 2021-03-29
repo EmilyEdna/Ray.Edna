@@ -6,9 +6,11 @@ using Ray.Edna.TaskCore;
 using Serilog;
 using Serilog.Debugging;
 using Serilog.Events;
+using Serilog.Sinks.SystemConsole.Themes;
 using Synctool.LinqFramework;
 using Synctool.StaticFramework;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Ray.Web.Hosting
@@ -29,15 +31,19 @@ namespace Ray.Web.Hosting
                       }).ConfigureLogging((host, opt) =>
                       {
                           Log.Logger = new LoggerConfiguration().WriteTo
-                          .Console(LogEventLevel.Information)
+                          .Console(LogEventLevel.Information,theme: GetTheme())
                           .CreateLogger();
                       }).UseSerilog().ConfigureServices((host, opt) =>
                       {
+                          #region 配置
                           AppOption.Jobs = host.Configuration.GetSection("Jobs").GetChildren()
                           .Select(t => t.GetChildren().FirstOrDefault())
                           .ToDictionary(t => t.Key, t => t.Value);
 
                           AppOption.CookieStr = host.Configuration.GetSection("CookieStr").Value;
+
+                          AppOption.MoneyGetTime = Convert.ToInt32(host.Configuration["MoneyGetTime"]);
+                          #endregion
 
                           opt.AddSingleton<QuartzService>();
                           opt.AddHostedService<TaskHostService>();
@@ -50,6 +56,17 @@ namespace Ray.Web.Hosting
                           });
 
                       }).UseConsoleLifetime();
+        }
+
+        private static SystemConsoleTheme GetTheme() {
+            var dic = new Dictionary<ConsoleThemeStyle, SystemConsoleThemeStyle>
+            {
+                {ConsoleThemeStyle.Text, new SystemConsoleThemeStyle{ Foreground= ConsoleColor.White} },
+                 {ConsoleThemeStyle.String, new SystemConsoleThemeStyle{ Foreground= ConsoleColor.Yellow} },
+                {ConsoleThemeStyle.Number, new SystemConsoleThemeStyle{ Foreground= ConsoleColor.Magenta} },
+                {ConsoleThemeStyle.LevelInformation, new SystemConsoleThemeStyle{ Foreground= ConsoleColor.Green} }
+            };
+            return new SystemConsoleTheme(dic);
         }
     }
 }
