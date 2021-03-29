@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\plugin\Ray.Edna.BiliBili\Ray.Edna.BiliBili.csproj" />
     <ProjectReference Include="..\Ray.Edna.Option\Ray.Edna.Option.csproj" />
   </ItemGroup>
 

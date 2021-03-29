@@ -6,6 +6,8 @@ using Ray.Edna.TaskCore;
 using Serilog;
 using Serilog.Debugging;
 using Serilog.Events;
+using Synctool.LinqFramework;
+using Synctool.StaticFramework;
 using System;
 using System.Linq;
 
@@ -31,13 +33,22 @@ namespace Ray.Web.Hosting
                           .CreateLogger();
                       }).UseSerilog().ConfigureServices((host, opt) =>
                       {
-
                           AppOption.Jobs = host.Configuration.GetSection("Jobs").GetChildren()
                           .Select(t => t.GetChildren().FirstOrDefault())
                           .ToDictionary(t => t.Key, t => t.Value);
 
+                          AppOption.CookieStr = host.Configuration.GetSection("CookieStr").Value;
+
                           opt.AddSingleton<QuartzService>();
                           opt.AddHostedService<TaskHostService>();
+
+                          SyncStatic.Assembly("Ray.Edna.BiliBili")
+                          .SelectMany(t => t.ExportedTypes.Where(x => x.GetInterface("IBiliBili") != null))
+                          .ForEnumerEach(item =>
+                          {
+                              BiliBiliOption.Set(item.Name, Activator.CreateInstance(item));
+                          });
+
                       }).UseConsoleLifetime();
         }
     }

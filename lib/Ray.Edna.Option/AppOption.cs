@@ -9,6 +9,17 @@ namespace Ray.Edna.Option
     public class AppOption
     {
         public static Dictionary<string, string> Jobs { get; set; }
-    }
 
+        public static string CookieStr { get; set; }
+
+        public static Dictionary<string, string> Cookies()
+        {
+            Dictionary<string, string> dic = new();
+            CookieStr.Split(";").ToList().ForEach(t =>
+            {
+                dic.Add(t.Split("=")[0], t.Split("=")[1]);
+            });
+            return dic;
+        }
+    }
 }

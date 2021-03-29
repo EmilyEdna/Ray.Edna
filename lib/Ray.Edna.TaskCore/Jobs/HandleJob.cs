@@ -1,11 +1,8 @@
-﻿using Microsoft.Extensions.Logging;
-using Quartz;
+﻿using Quartz;
+using Ray.Edna.BiliBili.Account;
+using Ray.Edna.Option;
 using Serilog;
-using Serilog.Events;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Synctool.LinqFramework;
 using System.Threading.Tasks;
 
 namespace Ray.Edna.TaskCore.Jobs
@@ -14,7 +11,8 @@ namespace Ray.Edna.TaskCore.Jobs
     {
         public Task Execute(IJobExecutionContext context)
         {
-             Log.Information(context.JobDetail.Key.Name);
+            var data = BiliBiliOption.Get<UserAssest>(nameof(UserAssest)).CookieLogin();
+            Log.Information(data.ToJson());
             return Task.CompletedTask;
         }
     }
