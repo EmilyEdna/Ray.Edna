@@ -31,7 +31,7 @@ namespace Ray.Web.Hosting
                       }).ConfigureLogging((host, opt) =>
                       {
                           Log.Logger = new LoggerConfiguration().WriteTo
-                          .Console(LogEventLevel.Information,theme: GetTheme())
+                          .Console(LogEventLevel.Information, theme: GetTheme())
                           .CreateLogger();
                       }).UseSerilog().ConfigureServices((host, opt) =>
                       {
@@ -42,7 +42,11 @@ namespace Ray.Web.Hosting
 
                           AppOption.CookieStr = host.Configuration.GetSection("CookieStr").Value;
 
-                          AppOption.MoneyGetTime = Convert.ToInt32(host.Configuration["MoneyGetTime"]);
+                          AppOption.MoneyDay = Convert.ToInt32(host.Configuration["MoneyDay"]);
+
+                          AppOption.Charge = host.Configuration.GetSection("AutoCharge").GetChildren().Select(t => t.Value).ToList();
+
+                          AppOption.ChargeUp = host.Configuration.GetSection("ChargeUpId").Value;
                           #endregion
 
                           opt.AddSingleton<QuartzService>();
@@ -58,7 +62,8 @@ namespace Ray.Web.Hosting
                       }).UseConsoleLifetime();
         }
 
-        private static SystemConsoleTheme GetTheme() {
+        private static SystemConsoleTheme GetTheme()
+        {
             var dic = new Dictionary<ConsoleThemeStyle, SystemConsoleThemeStyle>
             {
                 {ConsoleThemeStyle.Text, new SystemConsoleThemeStyle{ Foreground= ConsoleColor.White} },

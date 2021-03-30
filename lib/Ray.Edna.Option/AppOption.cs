@@ -12,7 +12,11 @@ namespace Ray.Edna.Option
 
         public static string CookieStr { get; set; }
 
-        public static int MoneyGetTime { get; set; }
+        public static int MoneyDay { get; set; }
+
+        public static string ChargeUp { get; set; }
+
+        public static List<string> Charge { get; set; }
 
         public static Dictionary<string, string> Cookies()
         {

@@ -7,6 +7,7 @@ namespace Ray.Edna.Option
         public const string Api = "api.bilibili.com";
         public const string CookieLogin = "https://{0}/x/web-interface/nav";
         public const string Vip = "https://{0}/x/vip/privilege/receive";
+        public const string Charge = "https://{0}/x/ugcpay/web/v2/trade/elec/pay/quick";
 
         #region Mini IOC
         private static ConcurrentDictionary<string, object> Ioc = new();
