@@ -11,21 +11,11 @@ namespace Ray.Edna.BiliBili.All
     {
         public ResultMsg<ChargeOut> Charge(ChargeIn info)
         {
-            var Dic = AppOption.Cookies();
-            Dic.Remove("bsource");
-            var cookies = HttpMultiClient.HttpMulti.InitCookieContainer()
-                            .AddNode(string.Format(BiliBiliOption.Charge, BiliBiliOption.Api), info, Type: RequestType.POST)
-                            .Cookie("bsource", "search_baidu", "/", BiliBiliOption.Api);
-            Dic.ForDicEach((key, value) =>
-            {
-                cookies = cookies.Cookie(key, value, "/", BiliBiliOption.Api);
-            });
-
-            return cookies
-                .Header("Referer", "https://www.bilibili.com/")
-                .Header("Origin", "https://www.bilibili.com/")
-                .Build().RunString().FirstOrDefault()
-                .ToModel<ResultMsg<ChargeOut>>();
+            return HttpMultiClient.HttpMulti.InitCookieContainer()
+                .Cookie(BiliBiliOption.Pix + BiliBiliOption.Api, AppOption.Cookies())
+                .AddNode(string.Format(BiliBiliOption.Charge, BiliBiliOption.Api), info, Type: RequestType.POST)
+                .Header(BiliBiliOption.Header).Build().RunString()
+                .FirstOrDefault().ToModel<ResultMsg<ChargeOut>>();
         }
     }
 }

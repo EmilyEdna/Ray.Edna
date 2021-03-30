@@ -62,7 +62,34 @@ namespace Ray.Edna.TaskCore.Jobs
                 else
                     Log.Error("领取失败，失败原因：{0} 错误码：{1} {2}", othercoupon.Message, othercoupon.Code, "×");
             }
+            #endregion
 
+            #region 直播签到兑换
+            var uliv = BiliBiliOption.Get<UserLive>(nameof(UserLive));
+            var liv = uliv.LivSign();
+            if (liv.Code == 0)
+                Log.Information("直播签到成功，本次签到获得{text},{special}", liv.Data.Text, liv.Data.SpecialText);
+            else
+                Log.Information(liv.Message);
+
+            var pliv = uliv.LivPay();
+            if (pliv.Code == 0)
+                Log.Information("银瓜子兑换硬币成功");
+            else
+                Log.Information("银瓜子兑换硬币失败，原因：{0}", pliv.Message);
+            Log.Information("当前银瓜子余额: {0}", uliv.LivStatus().Data.Silver);
+
+
+            #endregion
+
+            #region 每日看视频分享
+            var vcl = BiliBiliOption.Get<UserVideo>(nameof(UserVideo));
+            var video = vcl.GetFollowings(new VideoIn { Vmid = data.Mid });
+            if (video.Data.Total > 0)
+            {
+                var vv = vcl.GetRandomVideoOfUps(video.Data.List.Select(t => t.Mid).ToList());
+                Log.Information("获取随机视频：{title}", vv.Title);
+            }
             #endregion
 
             #region 充电
@@ -116,6 +143,8 @@ namespace Ray.Edna.TaskCore.Jobs
                 Log.Information("充电失败了啊 原因：{reason}", charge.Message);
             }
             #endregion
+
+
 
             return Task.CompletedTask;
         }
