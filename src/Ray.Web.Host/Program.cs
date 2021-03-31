@@ -40,7 +40,8 @@ namespace Ray.Web.Hosting
                           .Select(t => t.GetChildren().FirstOrDefault())
                           .ToDictionary(t => t.Key, t => t.Value);
 
-                          AppOption.CookieStr = host.Configuration.GetSection("CookieStr").Value;
+
+                          AppOption.CookieStr = args.FirstOrDefault(); //host.Configuration.GetSection("CookieStr").Value;
 
                           AppOption.MoneyDay = Convert.ToInt32(host.Configuration["MoneyDay"]);
 
@@ -49,7 +50,7 @@ namespace Ray.Web.Hosting
                           AppOption.ChargeUp = host.Configuration.GetSection("ChargeUpId").Value;
                           #endregion
 
-                          opt.AddSingleton<QuartzService>();
+                          //opt.AddSingleton<QuartzService>();
                           opt.AddHostedService<TaskHostService>();
 
                           SyncStatic.Assembly("Ray.Edna.BiliBili")
