@@ -34,14 +34,18 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
       
-    # 构建
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
+    # 发布
+    - name: Publish
+      run: |
+        cd ./src/Ray.Web.Hosting
+        dotnet publish --configuration Release --self-contained false --output ./bin/Publish/net5-dependent
     
     - name: run app
       env:
         Cookie: ${{secrets.Cookie}}
-      run: dotnet /Ray.Edna/src/Ray.Web.Host/bin/Release/net5.0/Ray.Web.Hosting.dll ${Cookie}
+      run: |
+        cd ./src/Ray.Web.Hosting/bin/Publish/net5-dependent
+        dotnet Ray.Web.Hosting.dll ${Cookie}
        
 
 
