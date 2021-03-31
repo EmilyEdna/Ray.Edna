@@ -41,7 +41,7 @@ namespace Ray.Web.Hosting
                           .ToDictionary(t => t.Key, t => t.Value);
 
 
-                          AppOption.CookieStr = args.FirstOrDefault(); //host.Configuration.GetSection("CookieStr").Value;
+                          AppOption.CookieStr = host.Configuration.GetSection("CookieStr").Value;
 
                           AppOption.MoneyDay = Convert.ToInt32(host.Configuration["MoneyDay"]);
 
