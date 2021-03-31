@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{04D58D81-808
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "plugin", "plugin", "{CB61BE16-2BAB-480D-88BD-A8BF38AF9B6F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ray.Web.Hosting", "src\Ray.Web.Host\Ray.Web.Hosting.csproj", "{4FBFB7D0-5B6B-4D58-AE6D-E0B66D686007}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ray.Web.Hosting", "src\Ray.Web.Hosting\Ray.Web.Hosting.csproj", "{4FBFB7D0-5B6B-4D58-AE6D-E0B66D686007}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ray.Edna.TaskCore", "lib\Ray.Edna.TaskCore\Ray.Edna.TaskCore.csproj", "{12D716E4-BB21-4019-981E-DCEFB8E77DD1}"
 EndProject
