@@ -41,7 +41,7 @@ jobs:
     - name: run app
       env:
         Cookie: ${{secrets.Cookie}}
-      run:  dotnet Ray.Web.Hosting.dll  ${Cookie}
+      run:  dotnet run -p ./src/Ray.Web.Hosting ${Cookie}
        
 
 
