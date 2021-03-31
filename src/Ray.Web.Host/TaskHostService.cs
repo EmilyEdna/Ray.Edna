@@ -24,8 +24,7 @@ namespace Ray.Web.Hosting
         public Task StartAsync(CancellationToken cancellationToken)
         {
             log.LogInformation("this application is begin start");
-            new Edna.TaskCore.Jobs.HandleJob().Execute(null);
-            //quartz.Start();
+            quartz.Start();
             return Task.CompletedTask;
         }
 

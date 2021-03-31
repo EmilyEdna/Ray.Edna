@@ -17,6 +17,7 @@ namespace Ray.Edna.TaskCore.Jobs
             #region 用户信息
             var data = BiliBiliOption.Get<UserAssest>(nameof(UserAssest)).CookieLogin();
 
+            Log.Information("当前经验：{0}", data.Level_info.Current_exp);
             Log.Information("每日登录 经验+{0} {1}", 5, "√");
             Log.Information("用户名：{0}", data.Uname);
             Log.Information("硬币：{0}", data.Money ?? 0);
@@ -88,8 +89,58 @@ namespace Ray.Edna.TaskCore.Jobs
             if (video.Data.Total > 0)
             {
                 var vv = vcl.GetRandomVideoOfUps(video.Data.List.Select(t => t.Mid).ToList());
-                Log.Information("获取随机视频：{title}", vv.Title);
+                Log.Information("获取随机视频：{0}", vv.Title);
+
+                var watch = vcl.UpVideo(new UpVideoWatch
+                {
+                    Aid = vv.Aid,
+                    Bvid = vv.Bvid,
+                    Cid = 0,
+                    Mid = data.Mid,
+                    Csrf = AppOption.Cookies()["bili_jct"]
+                });
+
+                if (watch.Code != 0)
+                    Log.Information("播放失败：{0}", watch.Message);
+
+                int playedTime = new Random().Next(1, 15);
+
+                var watch2 = vcl.UpVideo(new UpVideoWatch
+                {
+                    Aid = vv.Aid,
+                    Bvid = vv.Bvid,
+                    Cid = 0,
+                    Played_time = playedTime,
+                    Realtime = playedTime,
+                    Real_played_time = playedTime,
+                    Mid = data.Mid,
+                    Csrf = AppOption.Cookies()["bili_jct"]
+                });
+
+                if (watch2.Code == 0)
+                    Log.Information("视频播放成功，已观看到第{playedTime}秒，经验+{exp} √", playedTime, 5);
+                else
+                    Log.Information("视频播放失败，原因：{msg}", watch2.Message);
+
+                var share = vcl.ShareVideo(new ShareVideo
+                {
+                    aid = vv.Aid,
+                    csrf = AppOption.Cookies()["bili_jct"]
+                });
+
+                if (share.Code == 0)
+                    Log.Information("视频分享成功，经验+{exp} √", 5);
+                else
+                    Log.Information("视频分享失败，原因：{msg}", share.Message);
+
             }
+            #endregion
+
+            #region 任务完成情况
+            var info = BiliBiliOption.Get<UserAssest>(nameof(UserAssest)).GetReward();
+            Log.Information("每日登录：{0}", info.Data.Login ? "√" : "×");
+            Log.Information("每日分享：{0}", info.Data.Share ? "√" : "×");
+            Log.Information("每日观看：{0}", info.Data.Watch ? "√" : "×");
             #endregion
 
             #region 充电
@@ -143,9 +194,6 @@ namespace Ray.Edna.TaskCore.Jobs
                 Log.Information("充电失败了啊 原因：{reason}", charge.Message);
             }
             #endregion
-
-
-
             return Task.CompletedTask;
         }
     }

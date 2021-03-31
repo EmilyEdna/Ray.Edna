@@ -18,5 +18,15 @@ namespace Ray.Edna.BiliBili.All
                             .ToModel<JObject>().SelectToken("data")
                             .ToJson().ToModel<UserInfo>();
         }
+
+        public ResultMsg<DailyInfo> GetReward() 
+        {
+            return HttpMultiClient.HttpMulti.InitCookieContainer()
+                               .AddNode(string.Format(BiliBiliOption.Order, BiliBiliOption.Api))
+                               .Cookie(BiliBiliOption.Pix + BiliBiliOption.Api, AppOption.Cookies())
+                               .Build().RunString().FirstOrDefault()
+                               .ToModel<ResultMsg<DailyInfo>>();
+
+        }
     }
 }

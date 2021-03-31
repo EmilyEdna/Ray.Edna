@@ -16,6 +16,10 @@ namespace Ray.Edna.Option
         public const string LivStatus = "https://{0}/pay/v1/Exchange/getStatus";
         public const string Video = "https://{0}/x/relation/followings";
         public const string VideoSearch = "https://{0}/x/space/arc/search";
+        public const string UpVideo = "https://{0}/x/click-interface/web/heartbeat?aid={1}&played_time={2}";
+        public const string ShareVideo = "https://{0}/x/web-interface/share/add";
+        public const string Order = "https://{0}/x/member/web/exp/reward";
+
 
         public static Dictionary<string, string> DefaultHeader = new Dictionary<string, string>
         {

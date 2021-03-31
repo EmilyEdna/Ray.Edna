@@ -37,5 +37,27 @@ namespace Ray.Edna.BiliBili.All
                               .Build().RunString().FirstOrDefault()
                               .ToModel<ResultMsg<SearchUpVideosResponse>>().Data.List.Vlist.FirstOrDefault();
         }
+
+        public ResultMsg<object> UpVideo(UpVideoWatch input)
+        {
+            return HttpMultiClient.HttpMulti.InitCookieContainer()
+                                 .AddNode(string.Format(BiliBiliOption.UpVideo, BiliBiliOption.Api, input.Aid, input.Played_time), input, Type: RequestType.POST)
+                                 .Cookie(BiliBiliOption.Pix + BiliBiliOption.Api, AppOption.Cookies())
+                                 .Header(BiliBiliOption.DefaultHeader)
+                                 .Header(BiliBiliOption.Header)
+                                 .Build().RunString().FirstOrDefault()
+                                 .ToModel<ResultMsg<object>>();
+        }
+
+        public ResultMsg<object> ShareVideo(ShareVideo input)
+        {
+            return HttpMultiClient.HttpMulti.InitCookieContainer()
+                                .AddNode(string.Format(BiliBiliOption.ShareVideo, BiliBiliOption.Api), input, Type: RequestType.POST)
+                                .Cookie(BiliBiliOption.Pix + BiliBiliOption.Api, AppOption.Cookies())
+                                .Header(BiliBiliOption.DefaultHeader)
+                                .Header(BiliBiliOption.Header)
+                                .Build().RunString().FirstOrDefault()
+                                .ToModel<ResultMsg<object>>();
+        }
     }
 }

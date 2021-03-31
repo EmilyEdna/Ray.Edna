@@ -34,7 +34,7 @@ namespace Ray.Edna.TaskCore
                    IJobDetail detail = JobBuilder.Create(item).WithIdentity(item.Name, item.FullName).Build();
                    AppOption.Jobs.TryGetValue(item.Name, out string Cron);
                    ITrigger trigger = TriggerBuilder.Create().WithCronSchedule(Cron).Build();
-
+                   
                    triggers.Add(trigger);
                    dic.Add(detail, triggers.AsReadOnly());
                });
