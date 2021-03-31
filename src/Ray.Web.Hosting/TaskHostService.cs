@@ -14,16 +14,19 @@ namespace Ray.Web.Hosting
     public class TaskHostService : IHostedService
     {
         private readonly ILogger<TaskHostService> log;
+        private readonly IHostApplicationLifetime _applicationLifetime;
         //private readonly QuartzService quartz;
-        public TaskHostService(ILogger<TaskHostService> logger)
+        public TaskHostService(ILogger<TaskHostService> logger, IHostApplicationLifetime applicationLifetime)
         {
             log = logger;
+            _applicationLifetime = applicationLifetime;
             //quartz = quartzService;
         }
         public Task StartAsync(CancellationToken cancellationToken)
         {
             log.LogInformation("this application is begin start");
             new Edna.TaskCore.Jobs.HandleJob().Execute(null);
+            _applicationLifetime.StopApplication();
             //quartz.Start();
             return Task.CompletedTask;
         }
