@@ -1,6 +1,8 @@
 name: dayOn
 
 on:
+   workflow_dispatch: # 手动触发
+   
    schedule:
     - cron:  '1 * * * *'
 
