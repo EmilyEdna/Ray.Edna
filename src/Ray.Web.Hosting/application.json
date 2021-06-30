@@ -4,8 +4,8 @@
       "HandleJob": "0/3 * * * * ? *"
     }
   ],
-  "CookieStr": "bsource=search_baidu;_uuid=844F8125-95CF-B584-4895-A60293C4C10D91333infoc;buvid3=EA1CCB07-6A51-4844-9819-62039CFF754818567infoc;fingerprint3=4906724fbaa3120176fc8aacf348e075;buvid_fp=EA1CCB07-6A51-4844-9819-62039CFF754818567infoc;buvid_fp_plain=EA1CCB07-6A51-4844-9819-62039CFF754818567infoc;fingerprint_s=4bb1eacf73a9acf11a8100d0d803e2b2;fingerprint=5d8b1d1ad5390f6569a12d68e20ceb0e;bfe_id=1bad38f44e358ca77469025e0405c4a6;SESSDATA=ec00f4b0%2C1632556110%2C0b065%2A31;bili_jct=584231ce59a13debd3beb206f76d331f;DedeUserID=15689578;DedeUserID__ckMd5=21aa1ba38db9cb03;sid=4wy3z816",
-  "MoneyDay": 5, 
+  "CookieStr": "_uuid=35075AE1-5B21-AB71-249D-3E624CDA9F1044748infoc;buvid3=C6964F46-8580-4456-AA4A-EFBEEAE8E64013432infoc;buvid_fp=C6964F46-8580-4456-AA4A-EFBEEAE8E64013432infoc;buvid_fp_plain=1D2222A4-5DB2-FEFA-10BC-506E2D0649DD17750infoc;sid=4r5i5d00;DedeUserID=15689578;DedeUserID__ckMd5=21aa1ba38db9cb03;bili_jct=39a7320b8ba70d9ed3a681b576a74be2;SESSDATA=b829eab0%2C1640569337%2Ccd26d*61",
+  "MoneyDay": 5,
   "AutoCharge": [ "true", "-1" ],
   "ChargeUpId": ""
 }

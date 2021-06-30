@@ -66,7 +66,7 @@ namespace Ray.Edna.TaskCore.Jobs
             #endregion
 
             #region 直播签到兑换
-            var uliv = BiliBiliOption.Get<UserLive>(nameof(UserLive));
+            /*var uliv = BiliBiliOption.Get<UserLive>(nameof(UserLive));
             var liv = uliv.LivSign();
             if (liv.Code == 0)
                 Log.Information("直播签到成功，本次签到获得{text},{special}", liv.Data.Text, liv.Data.SpecialText);
@@ -78,9 +78,7 @@ namespace Ray.Edna.TaskCore.Jobs
                 Log.Information("银瓜子兑换硬币成功");
             else
                 Log.Information("银瓜子兑换硬币失败，原因：{0}", pliv.Message);
-            Log.Information("当前银瓜子余额: {0}", uliv.LivStatus().Data.Silver);
-
-
+            Log.Information("当前银瓜子余额: {0}", uliv.LivStatus().Data.Silver);*/
             #endregion
 
             #region 每日看视频分享
