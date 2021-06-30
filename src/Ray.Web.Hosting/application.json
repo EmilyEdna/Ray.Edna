@@ -4,7 +4,7 @@
       "HandleJob": "0/3 * * * * ? *"
     }
   ],
-  "CookieStr": "_uuid=35075AE1-5B21-AB71-249D-3E624CDA9F1044748infoc;buvid3=C6964F46-8580-4456-AA4A-EFBEEAE8E64013432infoc;buvid_fp=C6964F46-8580-4456-AA4A-EFBEEAE8E64013432infoc;buvid_fp_plain=1D2222A4-5DB2-FEFA-10BC-506E2D0649DD17750infoc;sid=4r5i5d00;DedeUserID=15689578;DedeUserID__ckMd5=21aa1ba38db9cb03;bili_jct=39a7320b8ba70d9ed3a681b576a74be2;SESSDATA=b829eab0%2C1640569337%2Ccd26d*61",
+  "CookieStr": "DedeUserID=15689578;bili_jct=8b5715311b90f9800e39f63bcddbd8f8;SESSDATA=cc446095%2C1640572293%2Cfc4b6%2A61",
   "MoneyDay": 5,
   "AutoCharge": [ "true", "-1" ],
   "ChargeUpId": ""
